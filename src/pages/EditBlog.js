@@ -9,6 +9,8 @@ import {
   BookOpenIcon,
 } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const EditBlog = () => {
   const navigate = useNavigate();
@@ -231,14 +233,13 @@ const EditBlog = () => {
               >
                 Learning Content *
               </label>
-              <textarea
-                id="description"
-                name="description"
+              <ReactQuill
                 value={formData.description}
-                onChange={handleChange}
-                className="input h-32 resize-none"
-                placeholder="Enter the content of your learning material"
-                required
+                onChange={(value) =>
+                  setFormData({ ...formData, description: value })
+                }
+                className="bg-white rounded-md border border-gray-300 focus:border-primary-500 min-h-[8rem]"
+                theme="snow"
               />
             </div>
 

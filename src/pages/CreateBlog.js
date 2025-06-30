@@ -9,6 +9,8 @@ import {
   BookOpenIcon,
 } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const CreateBlog = () => {
   const navigate = useNavigate();
@@ -197,33 +199,14 @@ const CreateBlog = () => {
               >
                 Learning Content *
               </label>
-              <div className="mb-2">
-                <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <BookOpenIcon className="h-4 w-4" />
-                  <span>
-                    Share your knowledge, tutorials, or educational content
-                  </span>
-                </div>
-              </div>
-              <textarea
-                id="description"
-                name="description"
+              <ReactQuill
                 value={formData.description}
-                onChange={handleChange}
-                rows={12}
-                className="input resize-none"
-                placeholder="Write your learning material content here. You can include:
-• Step-by-step tutorials
-• Educational explanations
-• Best practices and tips
-• Code examples (if applicable)
-• Real-world applications
-• Additional resources and references"
-                required
+                onChange={(value) =>
+                  setFormData({ ...formData, description: value })
+                }
+                className="bg-white rounded-md border border-gray-300 focus:border-primary-500 min-h-[8rem]"
+                theme="snow"
               />
-              <p className="text-sm text-gray-500 mt-1">
-                {formData.description.length} characters
-              </p>
             </div>
 
             {/* Tips Section */}
